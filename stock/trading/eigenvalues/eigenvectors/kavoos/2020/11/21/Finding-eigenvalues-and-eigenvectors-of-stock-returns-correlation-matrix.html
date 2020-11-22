@@ -7,10 +7,10 @@
 <title>Eigen-Vectors &amp; Eigen-Values of Stock Returns Correlations | fastpages</title>
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Eigen-Vectors &amp; Eigen-Values of Stock Returns Correlations" />
-<meta name="author" content="Nick" />
+<meta name="author" content="nickvazz" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Back in undergrad, John Rundle (https://geology.ucdavis.edu/people/faculty/rundle) taught a “Econo-Physics” class where we learned about portfolio managment using the eigen-vectors &amp; eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn." />
-<meta property="og:description" content="Back in undergrad, John Rundle (https://geology.ucdavis.edu/people/faculty/rundle) taught a “Econo-Physics” class where we learned about portfolio managment using the eigen-vectors &amp; eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn." />
+<meta name="description" content="Back in undergrad, John Rundle taught a graduate “Econo-Physics” class where in one lesson we learned about portfolio managment using the eigen-vectors &amp; eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn." />
+<meta property="og:description" content="Back in undergrad, John Rundle taught a graduate “Econo-Physics” class where in one lesson we learned about portfolio managment using the eigen-vectors &amp; eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn." />
 <link rel="canonical" href="https://nickvazz.github.io/NickingTheData/stock/trading/eigenvalues/eigenvectors/kavoos/2020/11/21/Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.html" />
 <meta property="og:url" content="https://nickvazz.github.io/NickingTheData/stock/trading/eigenvalues/eigenvectors/kavoos/2020/11/21/Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.html" />
 <meta property="og:site_name" content="fastpages" />
@@ -18,10 +18,26 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-11-21T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Back in undergrad, John Rundle (https://geology.ucdavis.edu/people/faculty/rundle) taught a “Econo-Physics” class where we learned about portfolio managment using the eigen-vectors &amp; eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn.","url":"https://nickvazz.github.io/NickingTheData/stock/trading/eigenvalues/eigenvectors/kavoos/2020/11/21/Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.html","@type":"BlogPosting","headline":"Eigen-Vectors &amp; Eigen-Values of Stock Returns Correlations","dateModified":"2020-11-21T00:00:00-06:00","datePublished":"2020-11-21T00:00:00-06:00","author":{"@type":"Person","name":"Nick"},"image":"https://nickvazz.github.io/NickingTheData/images/eigen_correlation_heatmap.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://nickvazz.github.io/NickingTheData/stock/trading/eigenvalues/eigenvectors/kavoos/2020/11/21/Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.html"},"@context":"https://schema.org"}</script>
+{"description":"Back in undergrad, John Rundle taught a graduate “Econo-Physics” class where in one lesson we learned about portfolio managment using the eigen-vectors &amp; eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn.","url":"https://nickvazz.github.io/NickingTheData/stock/trading/eigenvalues/eigenvectors/kavoos/2020/11/21/Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.html","@type":"BlogPosting","headline":"Eigen-Vectors &amp; Eigen-Values of Stock Returns Correlations","dateModified":"2020-11-21T00:00:00-06:00","datePublished":"2020-11-21T00:00:00-06:00","author":{"@type":"Person","name":"nickvazz"},"image":"https://nickvazz.github.io/NickingTheData/images/eigen_correlation_heatmap.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://nickvazz.github.io/NickingTheData/stock/trading/eigenvalues/eigenvectors/kavoos/2020/11/21/Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/NickingTheData/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nickvazz.github.io/NickingTheData/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/NickingTheData/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" /><script src="https://hypothes.is/embed.js" async></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
 
 <script>
 function wrap_img(fn) {
@@ -73,11 +89,11 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Eigen-Vectors &amp; Eigen-Values of Stock Returns Correlations</h1><p class="page-description">Back in undergrad, John Rundle (https://geology.ucdavis.edu/people/faculty/rundle) taught a "Econo-Physics" class where we learned about portfolio managment using the eigen-vectors & eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-21T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Eigen-Vectors &amp; Eigen-Values of Stock Returns Correlations</h1><p class="page-description">Back in undergrad, <a href='https://geology.ucdavis.edu/people/faculty/rundle'>John Rundle</a> taught a graduate "Econo-Physics" class where in one lesson we learned about portfolio managment using the eigen-vectors & eigen-values correlation matrix of stock returns. Here we create some fake data and make that caluation using numpy and pandas while visualizing using matplotlib and seaborn.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-21T00:00:00-06:00" itemprop="datePublished">
         Nov 21, 2020
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">Nick</span></span>
+            <span class="p-author h-card" itemprop="name">nickvazz</span></span>
        • <span class="read-time" title="Estimated read time">
     
     
@@ -116,12 +132,7 @@ window.onload = wrap_img;
     </a>
 </div>
 
-          <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/nickvazz/NickingTheData/master?filepath=_notebooks%2F2020-11-21-Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/NickingTheData/assets/badges/binder.svg" alt="Open In Binder"/>
-    </a>
-</div>
-
+          
           <div class="px-2">
     <a href="https://colab.research.google.com/github/nickvazz/NickingTheData/blob/master/_notebooks/2020-11-21-Finding-eigenvalues-and-eigenvectors-of-stock-returns-correlation-matrix.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/NickingTheData/assets/badges/colab.svg" alt="Open In Colab"/>
@@ -211,7 +222,7 @@ window.onload = wrap_img;
 <span class="n">letters</span> <span class="o">=</span> <span class="s1">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>
 <span class="n">tickers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">letters</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_stocks</span><span class="p">,</span><span class="mi">3</span><span class="p">))]</span>
 
-<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'2020-11-201'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">num_timesteps</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'2020-11-21'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">num_timesteps</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">brownian_motion</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">num_timesteps</span><span class="p">)</span> <span class="k">for</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="n">num_stocks</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="n">num_stocks</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span>
 
